@@ -9,6 +9,8 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+const PORT = process.env.PORT || 3000;
+
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 async function scrape(url) {
@@ -49,4 +51,4 @@ Respond clearly and conversationally.
   res.json({ reply: completion.choices[0].message.content });
 });
 
-app.listen(3000, () => console.log("🚀 Bot running at http://localhost:3000"));
+app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
